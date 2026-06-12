@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í stærðfræði – miðstig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024</p>
+    <h1>Hæfniviðmið í stærðfræði</h1>
+    <p class="lede">Miðstig — viðmið <em>við lok 7. bekkjar</em> (5.–7. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 5., 6. og 7. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code> (sjá README.md, skref 2).
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 25. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-25-staerdfraedi-2024" target="_blank" rel="noopener">adalnamskra.is</a>.</p>
+</footer>
+
+<script>
+window.SUBJECT = "staerdfraedi";
+window.FLOKKAR = [
+  {
+    "heiti": "Vinnulag stærðfræðinnar",
+    "vidmid": [
+      [
+        "Verkfæri og hlutbundin gögn",
+        "nýtt sér verkfæri og hlutbundin gögn til að rannsaka og finna lausn á stærðfræðilegum viðfangsefnum"
+      ],
+      [
+        "Samræður og tjáning",
+        "tjáð sig um stærðfræði, útskýrt hugsun sína fyrir öðrum og spurt spurninga til að leita lausna"
+      ],
+      [
+        "Táknmál og hugtök",
+        "notað rétt heiti yfir stærðfræðitákn, nýtt þau af nákvæmni við útreikninga og yfirfært milli táknmáls og daglegs máls"
+      ],
+      [
+        "Þróun aðferða",
+        "þróað hentugar aðferðir sem byggja á eigin skilningi við reikning með ræðum tölum"
+      ],
+      [
+        "Sannanir",
+        "metið hvort sönnun eða einföld rök byggð á stærðfræðilegum eiginleikum eru gild"
+      ],
+      [
+        "Þrautalausnir",
+        "leyst þrautir og rökstutt svör"
+      ],
+      [
+        "Rannsóknarvinna",
+        "unnið skipulega, einn og í samvinnu, að því að finna lausnir á stærðfræðilegum viðfangsefnum með því að kanna, rannsaka, greina og meta"
+      ],
+      [
+        "Kynningar",
+        "undirbúið og flutt kynningar á eigin vinnu með stærðfræði"
+      ],
+      [
+        "Reiknihugsun og forritun",
+        "notað forritun til að rannsaka gögn í töflum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Tölur og reikningur",
+    "vidmid": [
+      [
+        "Röðun talna og talnamengi",
+        "raðað ræðum tölum eftir stærð og útskýrt tengsl þeirra við heiltölur"
+      ],
+      [
+        "Námundun",
+        "nýtt sér námundun við útreikninga með heiltölum og tugabrotum"
+      ],
+      [
+        "Sætiskerfi",
+        "notað tugakerfisrithátt og sýnt skilning á sætiskerfi við ritun tugabrota"
+      ],
+      [
+        "Grunnreikniaðgerðir",
+        "nýtt sér grunnreikniaðgerðirnar fjórar og reiknað með ræðum tölum"
+      ],
+      [
+        "Hlutföll",
+        "sett hlutfall fram sem almennt brot, tugabrot og prósentu og beitt þeim við rauntengd viðfangsefni"
+      ],
+      [
+        "Reiknireglur",
+        "nýtt sér reiknireglur, tengsl reikniaðgerðanna og forgangsröð aðgerða við útreikninga"
+      ],
+      [
+        "Fjármál",
+        "nýtt stærðfræði til að takast á við verkefni er tengjast helstu hugtökum persónulegra fjármála og haldið utan um eigin fjármál"
+      ]
+    ]
+  },
+  {
+    "heiti": "Algebra",
+    "vidmid": [
+      [
+        "Mynstur",
+        "kannað og búið til rúmfræðileg mynstur og nýtt sér táknmál algebrunnar til að vinna með þau"
+      ],
+      [
+        "Hnitakerfi",
+        "teiknað og staðsett punkta í hnitakerfi og notað hnit til að teikna flatarmyndir"
+      ],
+      [
+        "Föll",
+        "rannsakað og sett fram talnarunur og lýst þeim með myndum, orðum og fallstærðum"
+      ],
+      [
+        "Óþekktar stærðir",
+        "notað bókstafi til að tákna óþekktar stærðir og reiknað með þeim"
+      ],
+      [
+        "Jöfnur og ójöfnur",
+        "fundið lausnir á jöfnum með því að nota algengar reiknireglur"
+      ]
+    ]
+  },
+  {
+    "heiti": "Tölfræði og líkindi",
+    "vidmid": [
+      [
+        "Gagnavinnsla",
+        "safnað og unnið úr gögnum, miðlað upplýsingum um þau með fjölbreyttum hætti"
+      ],
+      [
+        "Tölfræðikannanir",
+        "gert einfaldar tölfræðikannanir og framkvæmt einfalda tölfræðiútreikninga"
+      ],
+      [
+        "Myndrit",
+        "lesið, útskýrt og túlkað gögn og upplýsingar sem gefnar eru í töflum og myndritum"
+      ],
+      [
+        "Líkindatilraunir",
+        "dregið ályktanir um líkur út frá eigin tilraunum og borið saman við fræðilegar líkur"
+      ],
+      [
+        "Líkindareikningur",
+        "reiknað út líkur í einföldum tilvikum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Rúmfræði og mælingar",
+    "vidmid": [
+      [
+        "Tungumál",
+        "notað hugtök rúmfræðinnar til að lýsa eiginleikum hversdagslegra og fræðilegra fyrirbrigða"
+      ],
+      [
+        "Verkfæri",
+        "rannsakað, gert tilraunir og teikningar með því að nota rúmfræðiforrit og hlutbundin gögn"
+      ],
+      [
+        "Mynstur",
+        "hliðrað, speglað eða snúið flatarmyndum, til dæmis við rannsóknir á mynstrum"
+      ],
+      [
+        "Skýringarmyndir",
+        "rannsakað og greint tvívíð og þrívíð form, teiknað einfaldar flatar- og þrívíddarmyndir og notað til þess mælikvarða og einslögun"
+      ],
+      [
+        "Tími og klukkan",
+        "beitt jafngildi milli ólíkra tímaeininga til að ákvarða liðinn tíma af nákvæmni"
+      ],
+      [
+        "Mælieiningar",
+        "beitt tengslum á milli lengdar-, flatar-, rúmmáls-, tíma- og massaeininga metrakerfisins innbyrðis"
+      ],
+      [
+        "Mælingar",
+        "áætlað og mælt massa, lengd, rúmmál, hraða, tíma og hitastig með viðeigandi mælikvarða og dregið ályktanir af mælingunum"
+      ],
+      [
+        "Tvívíð form",
+        "áætlað, mælt og reiknað hornastærðir, ummál og flatarmál marghyrninga og gráður í hringgeira"
+      ],
+      [
+        "Þrívíð form",
+        "áætlað og reiknað rúmmál og yfirborðsflatarmál þrístrendings, réttstrendings og píramída"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

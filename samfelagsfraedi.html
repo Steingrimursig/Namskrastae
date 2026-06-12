@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í samfélagsfræði – miðstig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024</p>
+    <h1>Hæfniviðmið í samfélagsfræði</h1>
+    <p class="lede">Miðstig — viðmið <em>við lok 7. bekkjar</em> (5.–7. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 5., 6. og 7. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code> (sjá README.md, skref 2).
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 24. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-24-samfelagsgreinar-2024" target="_blank" rel="noopener">adalnamskra.is</a>.</p>
+</footer>
+
+<script>
+window.SUBJECT = "samfelagsfraedi";
+window.FLOKKAR = [
+  {
+    "heiti": "Vinnulag samfélagsgreina",
+    "vidmid": [
+      [
+        "Hugtök",
+        "útskýrt og notað mikilvæg hugtök samfélagsgreina"
+      ],
+      [
+        "Upplýsingalæsi",
+        "aflað sér upplýsinga um samfélagsleg málefni úr textum, hljóð- og myndefni, umorðað og nýtt til umfjöllunar"
+      ],
+      [
+        "Skoðanamyndun",
+        "metið og brugðist við ólíkum skoðunum og upplýsingum úr heimildum á ólíku formi og myndað sér eigin skoðanir"
+      ],
+      [
+        "Gagnrýnar umræður",
+        "spurt opinna spurninga og tekið þátt í umræðu um ólík málefni af samfélagslegum og siðferðilegum toga"
+      ],
+      [
+        "Setja sig í spor annarra",
+        "sett sig í spor fólks með ólíkan bakgrunn á völdum stöðum og tímum"
+      ],
+      [
+        "Miðlun",
+        "miðlað þekkingu, leikni og skoðunum á samfélagslegum málefnum á fjölbreyttan hátt"
+      ],
+      [
+        "Lýðræðislegt samstarf",
+        "tekið þátt í lýðræðislegu samstarfi og samræðu"
+      ]
+    ]
+  },
+  {
+    "heiti": "Sjálfsmynd",
+    "vidmid": [
+      [
+        "Félagsmótun",
+        "lýst sjálfum sér og tekið dæmi um þætti sem hafa áhrif á eigin sjálfsmynd, svo sem úr nærsamfélagi, umhverfi og menningu"
+      ],
+      [
+        "Þarfir",
+        "rætt um heilbrigða lífshætti og samskipti og ræktað mikilvægar þarfir"
+      ],
+      [
+        "Tilfinningar",
+        "lýst margvíslegum tilfinningum og áttað sig á áhrifum þeirra á hugsun og hegðun"
+      ],
+      [
+        "Hugarfar",
+        "lýst með dæmum mikilvægi jákvæðra lífsviðhorfa, hugarfars og seiglu fyrir eigin þroska"
+      ],
+      [
+        "Sjálfsþekking",
+        "gert grein fyrir eigin áhugasviðum, styrk og áskorunum og hvernig hægt er að vinna með þá þætti á uppbyggilegan hátt"
+      ],
+      [
+        "Virðing",
+        "sýnt virðingu fyrir sjálfum sér og öðrum, sett sér mörk í samskiptum og lýst því hvernig það er hægt"
+      ],
+      [
+        "Staðalmyndir",
+        "lýst staðalmyndum og fordómum í samfélaginu og áhrifum þeirra og áttað sig á skaðsemi þeirra"
+      ],
+      [
+        "Kynjafræði",
+        "beitt hugtökunum kyn, kynhneigð og kynhlutverk og áttað sig á fjölbreytni hinseginleikans"
+      ],
+      [
+        "Fjármál einstaklings",
+        "gert grein fyrir útgjöldum vegna þarfa, langana og hegðunar einstaklinga og mikilvægi fyrirhyggju í fjármálum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Siðferði og trú",
+    "vidmid": [
+      [
+        "Virðing fyrir fjölbreytileika",
+        "dregið fram ólíkan bakgrunn fólks og virt mismunandi trú, lífsgildi, skoðanir og siði"
+      ],
+      [
+        "Trú og lífsviðhorf",
+        "rætt viðfangsefni sem snerta trú, lífsviðhorf og siðferði og sett í samhengi við atburði daglegs lífs"
+      ],
+      [
+        "Trúarbrögð",
+        "gert grein fyrir völdum frásögnum, hefðum, hátíðum, siðum og táknum í kristni og nokkrum helstu trúarbrögðum heims"
+      ],
+      [
+        "Áhrif trúarbragða",
+        "borið saman valin trúarbrögð og lífsviðhorf og áhrif þeirra á líf fólks"
+      ]
+    ]
+  },
+  {
+    "heiti": "Borgaravitund",
+    "vidmid": [
+      [
+        "Reglur",
+        "rætt reglur í samskiptum fólks og tilgang þeirra og tekið þátt í að setja sameiginlegar leikreglur með öðrum"
+      ],
+      [
+        "Mannréttindi",
+        "rætt stöðu sína sem þátttakandi í samfélaginu, réttindi og skyldur og mikilvægi mannréttinda og jafnréttis í samfélaginu og á heimsvísu og þekki vel til Barnasáttmála Sameinuðu þjóðanna"
+      ],
+      [
+        "Samfélagsgerð",
+        "fjallað um ólíkar samfélagsgerðir og hvernig þær tengjast lífi einstaklinga"
+      ],
+      [
+        "Lýðræði",
+        "lýst nokkrum einkennum lýðræðislegra samfélagshátta hér á landi"
+      ],
+      [
+        "Stjórnkerfi",
+        "gert grein fyrir hlutverki mikilvægra stofnana samfélagsins"
+      ],
+      [
+        "Velferðarsamfélag",
+        "gert grein fyrir hugmyndum um samhjálp og velferð og framkvæmd þeirra í samfélaginu"
+      ],
+      [
+        "Samneysla",
+        "áttað sig á hvernig og hvers vegna kostnaður við ýmsa grunnþjónustu er greiddur af sameiginlegum sjóðum samfélagsins"
+      ],
+      [
+        "Slysavarnir",
+        "séð gildi slysavarna og þekkt viðbrögð við slysum í heimahúsum, nærsamfélagi og náttúrunni"
+      ],
+      [
+        "Umferðarreglur",
+        "gert grein fyrir umferðarreglum og helstu umferðarmerkjum og nýtt í daglegu lífi"
+      ],
+      [
+        "Geta til aðgerða",
+        "sett sig inn í málefni samfélagsins, áttað sig á möguleikum til áhrifa og sýnt það í verki með ábyrgum hætti"
+      ]
+    ]
+  },
+  {
+    "heiti": "Saga",
+    "vidmid": [
+      [
+        "Sögulegar heimildir",
+        "metið heimildir og ólík sjónarhorn í umfjöllun um sögu og samtíð"
+      ],
+      [
+        "Fjölskyldan",
+        "gert sér grein fyrir fjölbreytileika fjölskyldna og margvíslegum hlutverkum innan þeirra á ólíkum tímum"
+      ],
+      [
+        "Heimabyggð",
+        "greint samhengi umhverfis, sögu, menningar og mannlífs í heimabyggð og tengsl við önnur landsvæði"
+      ],
+      [
+        "Íslandssaga",
+        "fjallað um einkenni og þróun íslensks samfélags"
+      ],
+      [
+        "Saga",
+        "fjallað um og greint persónur, atburði, tímabil, tildrög og gang sögunnar"
+      ],
+      [
+        "Söguleg þróun",
+        "áttað sig á að sagan hefur mótast af ýmsum þáttum, svo sem umhverfi, atferli, lífsviðhorfum, samfélagsskipulagi og atvinnuháttum"
+      ],
+      [
+        "Áhrif sögu á samtímann",
+        "útskýrt með dæmum hvernig sögulegir atburðir hafa áhrif á samfélög og líf fólks í samtímanum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Jörðin okkar",
+    "vidmid": [
+      [
+        "Kortalæsi",
+        "notað kort og gröf til að afla sér upplýsinga og vinna úr þeim og sett upp einföld kort"
+      ],
+      [
+        "Samfélög",
+        "varpað ljósi á ólíkar aðstæður, menningu og líf fólks á jörðinni"
+      ],
+      [
+        "Auðlindir",
+        "skýrt hvernig notkun mannsins á auðlindum getur haft margvísleg áhrif á lífsgæði og lífbreytileika"
+      ],
+      [
+        "Neyslusamfélagið",
+        "lýst í grófum dráttum ferli daglegra neysluvara, uppruna þeirra, flutningi, sölu, nýtingu, förgun, endurvinnslu og kolefnisspori"
+      ],
+      [
+        "Áhrif mannsins",
+        "skýrt með dæmum áhrif tækni og mannlegra athafna á samfélag, loftslag og umhverfi"
+      ],
+      [
+        "Sjálfbær þróun",
+        "fjallað um hvað sjálfbær þróun felur í sér"
+      ],
+      [
+        "Ábyrgð á náttúruvernd",
+        "skýrt með dæmum mikilvægi náttúruverndar og þess að allir leggi sitt af mörkum"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
