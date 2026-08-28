@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í náttúrugreinum – miðstig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024</p>
+    <h1>Hæfniviðmið í náttúrugreinum</h1>
+    <p class="lede">Miðstig — viðmið <em>við lok 7. bekkjar</em> (5.–7. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 5., 6. og 7. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 22. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-22-natturugreinar-2024" target="_blank" rel="noopener">adalnamskra.is</a>.</p>
+</footer>
+
+<script>
+window.SUBJECT = "natturugreinar";
+window.FLOKKAR = [
+  {
+    "heiti": "Vinnulag náttúruvísinda",
+    "vidmid": [
+      [
+        "Hugtök",
+        "beitt algengustu hugtökum og heitum í náttúruvísindum við athuganir, í umræðu og textaskrifum"
+      ],
+      [
+        "Læsi á gögn og náttúruvísindatexta",
+        "lesið náttúruvísindatexta sér til gagns og endursagt með eigin orðum, túlkað myndrit og skoðað myndefni um náttúrufræði, umorðað og nýtt til útskýringa"
+      ],
+      [
+        "Athuganir",
+        "framkvæmt, skráð og safnað upplýsingum út frá einföldum athugunum og mælingum úti og inni samkvæmt fyrirmælum"
+      ],
+      [
+        "Miðlun",
+        "kynnt niðurstöður rannsókna, útskýrt hvaða vinnubrögðum var beitt og tekið þátt í umræðum um efnið"
+      ],
+      [
+        "Vísindaleg vinnubrögð",
+        "þekkt ferli vísindalegra vinnubragða og unnið eftir þeim í stýrðum verkefnum"
+      ],
+      [
+        "Eðli vísindalegrar þekkingar",
+        "rætt muninn á staðreynd og skoðun, tilgátu og kenningu í tengslum við náttúruvísindi"
+      ],
+      [
+        "Tengsl vísinda, tækni og menningar",
+        "rætt valin dæmi um samspil tækni, þekkingar og framfara og hvernig hugmyndir manna um heiminn hafa breyst með aukinni þekkingu"
+      ]
+    ]
+  },
+  {
+    "heiti": "Umhverfið",
+    "vidmid": [
+      [
+        "Hringrásir efna og orku",
+        "lýst samspili lífvera og lífvana þátta"
+      ],
+      [
+        "Vistkerfi",
+        "lýst mismunandi vistkerfum og nefnt dæmi um áhrif sem nýjar tegundir geta haft á umhverfi sitt"
+      ],
+      [
+        "Líffræðileg fjölbreytni",
+        "áttað sig á gildi líffræðilegrar fjölbreytni og tengslum við velferð manna og dýra"
+      ],
+      [
+        "Náttúruvernd",
+        "rætt um og skilið ástæður náttúruverndar"
+      ],
+      [
+        "Veðurfar",
+        "lýst helstu sérkennum veðurfars við Ísland"
+      ],
+      [
+        "Loftslagsbreytingar",
+        "útskýrt gróðurhúsaáhrif og tengsl við loftslagsbreytingar"
+      ],
+      [
+        "Náttúruauðlindir og sjálfbær nýting",
+        "áttað sig á mikilvægi þess að nýta náttúruauðlindir án þess að ganga um of á þær"
+      ],
+      [
+        "Einstaklingurinn og umhverfið",
+        "rætt valin dæmi um tengsl einstaklinga, nærumhverfis og umhverfismála á heimsvísu"
+      ],
+      [
+        "Geta til aðgerða",
+        "skipulagt og tekið þátt í aðgerðum er varða náttúruvernd og umhverfismál í nærumhverfi sínu"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lífið",
+    "vidmid": [
+      [
+        "Upplifun af náttúrunni",
+        "lýst reynslu sinni, athugun og upplifun af lífverum í náttúrulegu umhverfi"
+      ],
+      [
+        "Flokkun og lífsskilyrði lífvera",
+        "útskýrt helstu einkenni og lífsskilyrði lífvera og tekið dæmi um tengsl þeirra innbyrðis"
+      ],
+      [
+        "Örverur",
+        "nefnt dæmi um gagn og skaðsemi örvera"
+      ],
+      [
+        "Frumur",
+        "áttað sig á að frumur eru grunneining lífs á jörðinni"
+      ],
+      [
+        "Þróun",
+        "nefnt dæmi um náttúruval og aðlögun"
+      ],
+      [
+        "Erfðir",
+        "skilið að lífverur erfa einkenni forfeðra sinna"
+      ],
+      [
+        "Bygging og starfsemi plantna",
+        "sagt frá hvernig plöntur nýta ljóstillífun til að afla næringar"
+      ],
+      [
+        "Bygging og starfsemi sveppa",
+        "sagt frá rotverum og hvernig sveppir afla næringar"
+      ],
+      [
+        "Bygging og starfsemi dýra",
+        "sagt frá einkennum helstu hópa dýra"
+      ],
+      [
+        "Líffæri og líffærakerfi",
+        "lýst helstu líffærakerfum mannslíkamans og starfsemi þeirra í grófum dráttum"
+      ],
+      [
+        "Kynheilbrigði",
+        "lýst breytingum sem verða við kynþroskaaldur og gert sér grein fyrir mikilvægi gagnkvæmrar virðingar í samskiptum kynjanna"
+      ],
+      [
+        "Heilsa",
+        "rætt hvernig einstaklingur getur stuðlað að líkamlegu og andlegu heilbrigði"
+      ]
+    ]
+  },
+  {
+    "heiti": "Efnin",
+    "vidmid": [
+      [
+        "Uppbygging efna",
+        "útskýrt að allt er búið til úr frumeindum og sameindum"
+      ],
+      [
+        "Varðveisla massa",
+        "nefnt dæmi um varðveislu massa og tengt við hversdagslega atburði"
+      ],
+      [
+        "Lotukerfið",
+        "notað algeng efnatákn í umfjöllun um lotukerfið og efni í umhverfi sínu"
+      ],
+      [
+        "Efnajöfnur",
+        "þekkt algengar formúlur efnasambanda sem birtast í daglegu lífi"
+      ],
+      [
+        "Efnabreytingar og eiginleikar efna",
+        "gert grein fyrir efnabreytingum og hamskiptum og útskýrt með dæmum"
+      ],
+      [
+        "Leysni",
+        "fjallað um hugtakið leysni og tengt við athafnir í daglegu lífi"
+      ],
+      [
+        "Sýrustig",
+        "þekkt muninn á sýru og basa"
+      ]
+    ]
+  },
+  {
+    "heiti": "Orkan",
+    "vidmid": [
+      [
+        "Orka",
+        "lýst helstu orkuformum og lýst einföldum dæmum um varðveislu orkunnar"
+      ],
+      [
+        "Nýting orku",
+        "rætt dæmi um framleiðslu og nýtingu á orku í daglegu lífi"
+      ],
+      [
+        "Varmi",
+        "sýnt skilning á hugtökunum varmi og hitastig og tengt þau við daglegt líf"
+      ],
+      [
+        "Rafmagn og segulmagn",
+        "lýst eiginleikum segla og notkun þeirra og kannað eiginleika rafhlaðinna hluta"
+      ],
+      [
+        "Rafmagn og rafrásir",
+        "framkvæmt einfaldar athuganir á rafrásum og útskýrt hvernig rafmagn verður til"
+      ],
+      [
+        "Bylgjur",
+        "lýst eiginleikum hljóðs og ljóss og ýmsum fyrirbærum með tilliti til hljóðs og lita"
+      ],
+      [
+        "Gagn og skaðsemi bylgna",
+        "rætt um gagnsemi og hættur við helstu bylgjur í nærumhverfinu"
+      ],
+      [
+        "Kraftar og hreyfing",
+        "þekkt og fjallað um hreyfingu og einfaldar tegundir krafta"
+      ],
+      [
+        "Massi",
+        "áttað sig á muninum á massa og rúmmáli og helstu mælieiningum þessara eiginleika"
+      ]
+    ]
+  },
+  {
+    "heiti": "Alheimurinn",
+    "vidmid": [
+      [
+        "Jörðin",
+        "útskýrt árstíðirnar og dægraskipti út frá stöðu jarðar í sólkerfinu"
+      ],
+      [
+        "Mótun lands",
+        "lýst hvernig náttúruöfl hafa áhrif á myndun og mótun lands"
+      ],
+      [
+        "Hamfarir",
+        "lýst helstu sérkennum náttúruhamfara sem búast má við á Íslandi og hvernig viðbrögð við þeim eru skipulögð"
+      ],
+      [
+        "Tunglið",
+        "lýst gangi tunglsins um jörðina"
+      ],
+      [
+        "Sólkerfið",
+        "gert grein fyrir uppbyggingu sólkerfisins"
+      ],
+      [
+        "Alheimurinn",
+        "gert grein fyrir staðsetningu jarðarinnar í vetrarbrautinni"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
