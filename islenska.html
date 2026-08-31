@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í íslensku – miðstig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024</p>
+    <h1>Hæfniviðmið í íslensku</h1>
+    <p class="lede">Miðstig — viðmið <em>við lok 7. bekkjar</em> (5.–7. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 5., 6. og 7. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 19. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-19-islenska-2024" target="_blank" rel="noopener">adalnamskra.is</a>. Hér eru viðmið almennrar íslensku (móðurmáls).</p>
+</footer>
+
+<script>
+window.SUBJECT = "islenska";
+window.FLOKKAR = [
+  {
+    "heiti": "Talað mál, hlustun og áhorf",
+    "vidmid": [
+      [
+        "Framsögn",
+        "flutt mál sitt skýrt og áheyrilega og gert sér grein fyrir undirstöðuatriðum góðrar framsagnar"
+      ],
+      [
+        "Tjáning",
+        "gert grein fyrir þekkingu sinni og reynslu og tjáð hugmyndir sínar og skoðanir frammi fyrir hópi"
+      ],
+      [
+        "Hlustun og áhorf",
+        "hlustað og horft af athygli á fjölbreytt efni, beitt þekkingu sinni og reynslu til að skilja það og greint frá aðalatriðum"
+      ],
+      [
+        "Nýting miðla",
+        "nýtt sér myndefni og stafrænt efni á gagnrýninn hátt og greint frá aðalatriðum þess"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lestur og lesskilningur",
+    "vidmid": [
+      [
+        "Lesfimi",
+        "lesið texta við hæfi á nákvæman og sjálfvirkan hátt og með tjáningu sem sýnir skilning á tilgangi og merkingu texta"
+      ],
+      [
+        "Lestraraðferðir",
+        "beitt lestraraðferðum sem hæfa tilgangi og viðfangsefni hverju sinni"
+      ],
+      [
+        "Orðaforði",
+        "beitt fjölbreyttum orðaforða og fyrri þekkingu til að mynda samhengi og skilning í lestri og notað aðferðir til að ráða í merkingu ókunnra orða og orðasambanda"
+      ],
+      [
+        "Lesskilningur",
+        "skilið, fjallað um og dregið saman efni ólíkra texta, dregið ályktanir af efninu, greint og lagt mat á merkingu þeirra og tilgang á gagnrýninn hátt"
+      ],
+      [
+        "Lestrarmenning",
+        "valið og lesið sér til gagns og ánægju fjölbreytta texta og miðlað áhuga sínum og skoðunum til annarra"
+      ]
+    ]
+  },
+  {
+    "heiti": "Bókmenntir",
+    "vidmid": [
+      [
+        "Lestur og túlkun bókmennta",
+        "lesið ýmsar bókmenntir og unnið með efni þeirra á fjölbreyttan hátt"
+      ],
+      [
+        "Bókmenntagreining",
+        "beitt nokkrum grunnhugtökum í bókmenntafræði við umfjöllun um fjölbreyttar bókmenntir"
+      ],
+      [
+        "Bókmenntaarfurinn",
+        "lesið einfalda texta frá fyrri tímum og áttað sig á því að þeir mótist af sögulegu samhengi"
+      ],
+      [
+        "Ljóð",
+        "notað einföld bókmenntahugtök í umræðu og vinnu með innihald og einkenni ljóða frá ólíkum tímum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Ritun",
+    "vidmid": [
+      [
+        "Skrift og frágangur",
+        "miðlað texta í gegnum sjálfvirka og læsilega skrift og fyrirhafnarlausan innslátt á lyklaborð og gengið frá texta samkvæmt fyrirmælum"
+      ],
+      [
+        "Uppbygging texta",
+        "skrifað texta þar sem málsgreinar eru fjölbreyttar og texta er skipt upp í efnisgreinar"
+      ],
+      [
+        "Textategundir og málnotkun",
+        "skipulagt og orðað texta á þann hátt sem hæfir tilefni, viðtakendum og birtingarformi"
+      ],
+      [
+        "Tjáning í texta",
+        "tjáð hugmyndir sínar, reynslu og sköpun í texta, metið, mótað og endurskrifað með hliðsjón af hjálpargögnum"
+      ],
+      [
+        "Stafsetning og greinarmerkjasetning",
+        "beitt algengum atriðum stafsetningar og greinarmerkjasetningar og notað tiltæk hjálpargögn við hæfi"
+      ]
+    ]
+  },
+  {
+    "heiti": "Mál og málnotkun",
+    "vidmid": [
+      [
+        "Einkenni málsins",
+        "beitt málfræðiþekkingu sinni í umræðu um ýmis einkenni málsins og málnotkun sína"
+      ],
+      [
+        "Fjölbreytt málnotkun",
+        "notað góðan orðaforða í ræðu og riti og nýtt sér fjölbreytt málsnið við orðmyndun, tal og ritun"
+      ],
+      [
+        "Sköpunarkraftur",
+        "nýtt orðaforða sinn til að skapa ný orð og orðasambönd og notað þau í texta"
+      ],
+      [
+        "Orðflokkar",
+        "áttað sig á hvernig orðaforðinn skiptist í sagnorð, fallorð og óbeygjanleg orð og greint hlutverk og helstu einkenni þeirra"
+      ],
+      [
+        "Orðtök og málshættir",
+        "notað algeng orðtök og málshætti í töluðu máli og rituðu og greint notagildi þeirra í texta"
+      ],
+      [
+        "Gögn og hjálpartæki",
+        "nýtt sér kunnáttu og færni til að fletta upp orðum í orðabókum og öðrum gagnabrunnum um tungumál"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
