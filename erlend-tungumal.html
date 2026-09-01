@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í erlendum tungumálum – miðstig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024</p>
+    <h1>Hæfniviðmið í erlendum tungumálum</h1>
+    <p class="lede">Miðstig — viðmið <em>við lok 1. stigs</em> (á við ensku á 5.–7. bekk). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 5., 6. og 7. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 20. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-20-erlend-tungumal-2024" target="_blank" rel="noopener">adalnamskra.is</a>. Erlend tungumál eru sett fram á þremur stigum (1.–3.); hér eru viðmið 1. stigs, sem eiga við miðstig. Viðmiðin gilda um ensku og önnur erlend tungumál.</p>
+</footer>
+
+<script>
+window.SUBJECT = "erlend-tungumal";
+window.FLOKKAR = [
+  {
+    "heiti": "Hlustun og áhorf",
+    "vidmid": [
+      [
+        "Frásagnir og kynningar",
+        "skilið algeng orð, einföld fyrirmæli og frásagnir og brugðist við þeim"
+      ],
+      [
+        "Fjöl- og myndmiðlar",
+        "fylgt meginþræði í einföldu efni sem höfðar til barna og unglinga"
+      ],
+      [
+        "Greining upplýsinga",
+        "hlustað eftir einföldum upplýsingum og nýtt sér í námi sínu"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lestur og lesskilningur",
+    "vidmid": [
+      [
+        "Greining aðalatriða",
+        "fundið afmarkaðar upplýsingar í einföldum texta og nýtt sér í verkefnavinnu"
+      ],
+      [
+        "Rauntextar",
+        "skilið megininntak einfaldra rauntexta með stuðningi ef þarf"
+      ],
+      [
+        "Bókmenntir",
+        "lesið stuttar sögur og bækur á einföldu máli sér til ánægju"
+      ],
+      [
+        "Aðrar námsgreinar",
+        "lesið stutt og auðlesið efni tengt öðrum námsgreinum"
+      ],
+      [
+        "Orðaforði",
+        "lesið og skilið stutta texta með grunnorðaforða daglegs lífs"
+      ]
+    ]
+  },
+  {
+    "heiti": "Samskipti",
+    "vidmid": [
+      [
+        "Óformlegt samtal",
+        "spurt og svarað á einfaldan hátt um það sem stendur honum næst"
+      ],
+      [
+        "Almenn samskipti",
+        "tekist á við aðstæður í skólastofunni í einföldum samskiptum"
+      ],
+      [
+        "Samræður",
+        "tekið þátt í einföldum samræðum í skólastofunni"
+      ]
+    ]
+  },
+  {
+    "heiti": "Frásögn",
+    "vidmid": [
+      [
+        "Tjáning",
+        "tjáð sig á einfaldan hátt um sjálfan sig og líf sitt"
+      ],
+      [
+        "Frásögn og kynning",
+        "undirbúið og flutt einfalda frásögn eða kynningu um efni sem hann þekkir vel"
+      ],
+      [
+        "Flutningur",
+        "flutt einfalt atriði sem hann hefur haft tækifæri til að æfa"
+      ],
+      [
+        "Framsögn",
+        "tjáð sig nokkuð skiljanlega hvað varðar framburð og áherslur"
+      ]
+    ]
+  },
+  {
+    "heiti": "Ritun",
+    "vidmid": [
+      [
+        "Samfelldur texti",
+        "skrifað einfaldan texta með orðaforða úr efnisflokkum sem fengist er við"
+      ],
+      [
+        "Málnotkun",
+        "byggt upp einfaldar setningar, stafsett algeng orð og notað algeng greinarmerki"
+      ],
+      [
+        "Endursögn",
+        "skrifað einfalda texta um efni sem tengist námi hans"
+      ],
+      [
+        "Persónuleg reynsla",
+        "skrifað á einföldu máli um efni sem hann þekkir vel"
+      ],
+      [
+        "Skapandi ritun",
+        "samið stutta texta frá eigin brjósti"
+      ]
+    ]
+  },
+  {
+    "heiti": "Menningarlæsi",
+    "vidmid": [
+      [
+        "Samfélag",
+        "sýnt að hann þekkir til ýmissa sérkenna menningarsvæðisins"
+      ],
+      [
+        "Fjölbreytileiki",
+        "gert sér grein fyrir mismunandi siðum og hefðum á viðkomandi málsvæði"
+      ],
+      [
+        "Skyldleiki og afbrigði tungumála",
+        "sýnt að hann áttar sig á að mörg algeng orð í erlenda tungumálinu eru lík og skyld öðrum sem hann þekkir"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
