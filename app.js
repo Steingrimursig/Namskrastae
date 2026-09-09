@@ -1,6 +1,7 @@
 (function () {
   "use strict";
   var FLOKKAR = window.FLOKKAR, SUBJECT = window.SUBJECT;
+  var BEKKIR = window.BEKKIR || [5, 6, 7];   // árgangar dálkanna
   var rom = ["I", "II", "III", "IV", "V", "VI"];
   var efni = document.getElementById("efni");
   var barfill = document.getElementById("barfill");
@@ -8,7 +9,7 @@
   var taln = document.getElementById("taln");
   var stadaEl = document.getElementById("stada");
   var vidvorun = document.getElementById("vidvorun");
-  var state = {};        // id -> {merkt, b5, b6, b7}
+  var state = {};
   var heild = 0;
 
   var cfgOk = window.SUPABASE_URL && window.SUPABASE_ANON_KEY &&
@@ -19,7 +20,6 @@
   function idFor(fi, vi) { return SUBJECT + "-f" + fi + "-v" + vi; }
   function setStada(cls, txt) { stadaEl.className = "stada " + cls; stadaEl.textContent = txt; }
 
-  // ---- Render ----
   FLOKKAR.forEach(function (fl, fi) {
     heild += fl.vidmid.length;
     var sec = document.createElement("section");
@@ -30,6 +30,10 @@
       '<span class="telja" data-flokkur="' + fi + '">0/' + fl.vidmid.length + '</span></div>';
     fl.vidmid.forEach(function (v, vi) {
       var id = idFor(fi, vi);
+      var dalkar = BEKKIR.map(function (b) {
+        return '<div class="dalkur b' + b + '"><label>' + b + '. bekkur</label>' +
+          '<textarea data-bekkur="' + b + '" placeholder="Skráning fyrir ' + b + '. bekk…"></textarea></div>';
+      }).join("");
       var card = document.createElement("div");
       card.className = "vidmid";
       card.dataset.id = id;
@@ -41,11 +45,7 @@
         '<span class="vlysing">' + v[1] + '</span></span></button>' +
         '<div class="ihugun"><div><div class="ihugun-inn">' +
         '<p class="ihugun-sp">Hvernig fórst þú í þetta hæfniviðmið?</p>' +
-        '<div class="dalkar">' +
-        '<div class="dalkur b5"><label>5. bekkur</label><textarea data-bekkur="5" placeholder="Skráning fyrir 5. bekk…"></textarea></div>' +
-        '<div class="dalkur b6"><label>6. bekkur</label><textarea data-bekkur="6" placeholder="Skráning fyrir 6. bekk…"></textarea></div>' +
-        '<div class="dalkur b7"><label>7. bekkur</label><textarea data-bekkur="7" placeholder="Skráning fyrir 7. bekk…"></textarea></div>' +
-        '</div></div></div></div>';
+        '<div class="dalkar">' + dalkar + '</div></div></div></div>';
       sec.appendChild(card);
     });
     efni.appendChild(sec);
@@ -69,24 +69,23 @@
     taln.textContent = merkt + " af " + heild + " skráð";
   }
 
-  // Apply a state row to its card. fromRemote=true => don't overwrite a field being edited.
   function applyToCard(id, fromRemote) {
     var card = cardById(id); if (!card) return;
     var st = state[id] || {};
     card.classList.toggle("merkt", !!st.merkt);
     card.querySelector(".toggle").setAttribute("aria-pressed", st.merkt ? "true" : "false");
-    ["5", "6", "7"].forEach(function (b) {
+    BEKKIR.forEach(function (b) {
       var ta = card.querySelector('textarea[data-bekkur="' + b + '"]');
+      if (!ta) return;
       var val = st["b" + b] || "";
-      if (fromRemote && document.activeElement === ta) return; // don't clobber typing
+      if (fromRemote && document.activeElement === ta) return;
       if (ta.value !== val) ta.value = val;
     });
   }
 
-  // ---- Sync ----
   function upsert(patch) {
     if (!client) return;
-    patch.id = patch.id; patch.subject = SUBJECT;
+    patch.subject = SUBJECT;
     client.from("haefnividmid").upsert(patch).then(function (r) {
       if (r.error) { setStada("villa", "Vistun mistókst"); console.error(r.error); }
     });
@@ -105,7 +104,7 @@
   efni.addEventListener("click", function (e) {
     var btn = e.target.closest(".toggle"); if (!btn) return;
     var card = btn.closest(".vidmid"); var id = card.dataset.id;
-    var st = state[id] || (state[id] = { merkt: false, b5: "", b6: "", b7: "" });
+    var st = state[id] || (state[id] = { merkt: false });
     st.merkt = !st.merkt;
     applyToCard(id); uppfaeraTeljara();
     upsert({ id: id, merkt: st.merkt });
@@ -116,19 +115,14 @@
     if (e.target.tagName !== "TEXTAREA") return;
     var card = e.target.closest(".vidmid"); var id = card.dataset.id;
     var b = e.target.dataset.bekkur;
-    var st = state[id] || (state[id] = { merkt: false, b5: "", b6: "", b7: "" });
+    var st = state[id] || (state[id] = { merkt: false });
     st["b" + b] = e.target.value;
     debounceUpsert(id, "b" + b, e.target.value);
   });
 
   uppfaeraTeljara();
 
-  // ---- Load + realtime ----
-  if (!client) {
-    setStada("otengt", "Ekki tengt");
-    vidvorun.style.display = "block";
-    return;
-  }
+  if (!client) { setStada("otengt", "Ekki tengt"); vidvorun.style.display = "block"; return; }
   setStada("otengt", "Tengist…");
 
   client.from("haefnividmid").select("*").eq("subject", SUBJECT).then(function (r) {
