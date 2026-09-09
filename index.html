@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hæfniviðmið miðstigs – skólanámskrá</title>
+<title>Hæfniviðmið – skólanámskrá</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,34 +17,44 @@
   body{margin:0;background:var(--paper);color:var(--ink);
     font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-  header{padding:52px 0 30px}
+  header{padding:52px 0 20px}
   .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600;margin:0 0 12px}
   h1{font-family:"Newsreader",serif;font-weight:500;font-optical-sizing:auto;
     font-size:clamp(31px,6vw,46px);line-height:1.08;margin:0 0 14px;letter-spacing:-.01em;}
   .lede{color:var(--muted);font-size:16px;max-width:54ch;margin:0}
+  .stig{font-family:"Newsreader",serif;font-weight:500;font-size:22px;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
   .grein{display:block;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sea);
-    border-radius:12px;padding:22px 24px;margin-bottom:14px;text-decoration:none;color:var(--ink);
+    border-radius:12px;padding:20px 22px;margin-bottom:12px;text-decoration:none;color:var(--ink);
     box-shadow:var(--shadow);transition:transform .15s,border-color .2s}
   .grein:hover{transform:translateY(-2px);border-left-color:var(--blue)}
-  .grein h2{font-family:"Newsreader",serif;font-weight:500;margin:0 0 4px;font-size:24px}
+  .grein h2{font-family:"Newsreader",serif;font-weight:500;margin:0 0 4px;font-size:22px}
   .grein span{color:var(--muted);font-size:14px}
+  main{padding-bottom:70px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <p class="eyebrow">Skólanámskrá · miðstig (5.–7. bekkur)</p>
+    <p class="eyebrow">Skólanámskrá · hæfniviðmið aðalnámskrár</p>
     <h1>Hæfniviðmið aðalnámskrár</h1>
-    <p class="lede">Sameiginlegt vinnusvæði kennara. Veldu námsgrein, merktu viðmið og skráðu hvernig hver árgangur fór í þau. Allt samstillist í rauntíma hjá öllum.</p>
+    <p class="lede">Sameiginlegt vinnusvæði kennara. Veldu stig og námsgrein, merktu viðmið og skráðu hvernig hver árgangur fór í þau. Allt samstillist í rauntíma hjá öllum.</p>
   </div>
 </header>
-<main class="wrap" style="padding-bottom:70px">
+<main class="wrap">
+  <h2 class="stig">Miðstig · 5.–7. bekkur</h2>
   <a class="grein" href="islenska.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum · við lok 7. bekkjar</span></a>
-  <a class="grein" href="erlend-tungumal.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 1. stig (enska, miðstig)</span></a>
+  <a class="grein" href="erlend-tungumal.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 1. stig (enska)</span></a>
   <a class="grein" href="staerdfraedi.html"><h2>Stærðfræði</h2><span>35 hæfniviðmið í fimm flokkum · við lok 7. bekkjar</span></a>
   <a class="grein" href="natturugreinar.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum · við lok 7. bekkjar</span></a>
   <a class="grein" href="samfelagsfraedi.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum · við lok 7. bekkjar</span></a>
+
+  <h2 class="stig">Unglingastig · 8.–10. bekkur</h2>
+  <a class="grein" href="islenska-ungl.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum · við lok 10. bekkjar</span></a>
+  <a class="grein" href="erlend-tungumal-ungl.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 3. stig (enska)</span></a>
+  <a class="grein" href="staerdfraedi-ungl.html"><h2>Stærðfræði</h2><span>36 hæfniviðmið í fimm flokkum · við lok 10. bekkjar</span></a>
+  <a class="grein" href="natturugreinar-ungl.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum · við lok 10. bekkjar</span></a>
+  <a class="grein" href="samfelagsfraedi-ungl.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum · við lok 10. bekkjar</span></a>
 </main>
 </body>
 </html>
