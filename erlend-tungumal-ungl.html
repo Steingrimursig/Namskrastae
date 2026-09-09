@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í erlendum tungumálum – unglingastig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>.dalkur.b9 label{color:#6f7a3c} .dalkur.b10 label{color:#9a6a3a}</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024 · Unglingastig</p>
+    <h1>Hæfniviðmið í erlendum tungumálum</h1>
+    <p class="lede">Unglingastig — viðmið <em>við lok 3. stigs</em> (8.–10. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 8., 9. og 10. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 20. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-20-erlend-tungumal-2024" target="_blank" rel="noopener">adalnamskra.is</a>. 3. stig á við ensku á unglingastigi. Viðmiðin gilda um ensku og önnur erlend tungumál.</p>
+</footer>
+
+<script>
+window.SUBJECT = "erlend-tungumal-ungl";
+window.BEKKIR = [8, 9, 10];
+window.FLOKKAR = [
+  {
+    "heiti": "Hlustun og áhorf",
+    "vidmid": [
+      [
+        "Frásagnir og kynningar",
+        "skilið aðalatriði úr kynningum og frásögnum um margvísleg málefni, unnið úr þeim eða nýtt sér á annan hátt"
+      ],
+      [
+        "Fjöl- og myndmiðlar",
+        "fylgst með fjölbreyttu efni í fjöl- og myndmiðlum, unnið úr því eða nýtt sér á annan hátt"
+      ],
+      [
+        "Greining upplýsinga",
+        "hlustað eftir upplýsingum, valið þær sem eiga við hverju sinni og unnið úr þeim"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lestur og lesskilningur",
+    "vidmid": [
+      [
+        "Greining aðalatriða",
+        "aflað sér upplýsinga úr texta, greint aðalatriði frá aukaatriðum og nýtt sér í verkefnavinnu"
+      ],
+      [
+        "Rauntextar",
+        "lesið sér til fróðleiks rauntexta af fjölbreyttum miðlum, brugðist við efni þeirra eða unnið úr þeim á annan hátt"
+      ],
+      [
+        "Bókmenntir",
+        "lesið sér til gagns og ánægju fjölbreyttar bókmenntir við hæfi, unnið með efni þeirra og gert sér grein fyrir gildi bókmennta"
+      ],
+      [
+        "Aðrar námsgreinar",
+        "lesið, skilið og unnið með efni og hugtök tengt öðrum námsgreinum"
+      ],
+      [
+        "Orðaforði",
+        "lesið, skilið og unnið með fjölbreyttan orðaforða úr ýmsum textum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Samskipti",
+    "vidmid": [
+      [
+        "Óformlegt samtal",
+        "tekið þátt í óformlegu samtali með því að umorða og nota föst orðasambönd úr daglegu máli"
+      ],
+      [
+        "Almenn samskipti",
+        "tekist á við margs konar aðstæður í almennum samskiptum, miðlað og tekið á móti upplýsingum"
+      ],
+      [
+        "Samræður",
+        "tekið þátt í samræðum um kunnugleg málefni og látið skoðun sína í ljós"
+      ]
+    ]
+  },
+  {
+    "heiti": "Frásögn",
+    "vidmid": [
+      [
+        "Tjáning",
+        "tjáð sig skipulega um efni sem hann þekkir eða hefur unnið með í námi sínu og brugðist við spurningum"
+      ],
+      [
+        "Frásögn og kynning",
+        "flutt frásögn eða kynningu um undirbúið efni af öryggi og svarað spurningum"
+      ],
+      [
+        "Flutningur",
+        "samið, æft og flutt eigið efni, einn eða í félagi við aðra"
+      ],
+      [
+        "Framsögn",
+        "beitt málinu með eðlilegum framburði, áherslum og hrynjandi"
+      ]
+    ]
+  },
+  {
+    "heiti": "Ritun",
+    "vidmid": [
+      [
+        "Samfelldur texti",
+        "skrifað lipran, samfelldan texta af ólíkum gerðum í samræmi við inntak og tilgang með skrifunum"
+      ],
+      [
+        "Málnotkun",
+        "sýnt góð tök á orðaforða, meginreglum málnotkunar og notað tengiorð við hæfi"
+      ],
+      [
+        "Endursögn",
+        "skrifað skilmerkilega um efni sem hann hefur lesið, séð eða heyrt"
+      ],
+      [
+        "Persónuleg reynsla",
+        "skrifað um skoðanir sínar, tilfinningar, reynslu og þekkingu með fjölbreyttum orðaforða"
+      ],
+      [
+        "Skapandi ritun",
+        "samið texta og leikið sér með málið þar sem sköpunargáfan og ímyndunaraflið fá að njóta sín"
+      ]
+    ]
+  },
+  {
+    "heiti": "Menningarlæsi",
+    "vidmid": [
+      [
+        "Samfélag",
+        "sýnt að hann þekkir til samfélagsgerðar, menningar og einkenna þjóðfélagsins"
+      ],
+      [
+        "Fjölbreytileiki",
+        "gert sér grein fyrir fjölbreyttum uppruna íbúa á viðkomandi málsvæði og áhrifum fordóma"
+      ],
+      [
+        "Skyldleiki og afbrigði tungumála",
+        "greint á milli helstu afbrigði tungumálsins"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

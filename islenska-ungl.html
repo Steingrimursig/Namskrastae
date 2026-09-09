@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í íslensku – unglingastig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>.dalkur.b9 label{color:#6f7a3c} .dalkur.b10 label{color:#9a6a3a}</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024 · Unglingastig</p>
+    <h1>Hæfniviðmið í íslensku</h1>
+    <p class="lede">Unglingastig — viðmið <em>við lok 10. bekkjar</em> (8.–10. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 8., 9. og 10. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 19. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-19-islenska-2024" target="_blank" rel="noopener">adalnamskra.is</a>. Hér eru viðmið almennrar íslensku (móðurmáls).</p>
+</footer>
+
+<script>
+window.SUBJECT = "islenska-ungl";
+window.BEKKIR = [8, 9, 10];
+window.FLOKKAR = [
+  {
+    "heiti": "Talað mál, hlustun og áhorf",
+    "vidmid": [
+      [
+        "Framsögn",
+        "flutt mál sitt skýrt og áheyrilega með viðeigandi talhraða, tónfalli, áherslum og fasi"
+      ],
+      [
+        "Tjáning",
+        "miðlað þekkingu sinni og reynslu, tjáð hugmyndir sínar og skoðanir og fært rök fyrir þeim með fjölbreyttum leiðum"
+      ],
+      [
+        "Hlustun og áhorf",
+        "horft á, hlustað og tekið eftir upplýsingum í fjölbreyttu efni og greint og miðlað innihaldi þess á gagnrýninn hátt"
+      ],
+      [
+        "Nýting miðla",
+        "nýtt sér fjölbreytta hljóð- og myndmiðla til upplýsingar og afþreyingar og tekið afstöðu til þess sem þar er birt"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lestur og lesskilningur",
+    "vidmid": [
+      [
+        "Lesfimi",
+        "lesið fjölbreytta texta af öryggi, í góðu flæði og í viðeigandi hendingum og með tjáningu í samræmi við aðstæður hverju sinni"
+      ],
+      [
+        "Lestraraðferðir",
+        "valið og beitt fjölbreyttum lestraraðferðum sem hæfa tilgangi og viðfangsefni hverju sinni"
+      ],
+      [
+        "Orðaforði",
+        "beitt ríkulegum orðaforða, fyrri þekkingu og reynslu til að mynda samhengi og skilning í lestri og notað fjölbreyttar aðferðir til að efla orðaforða sinn"
+      ],
+      [
+        "Lesskilningur",
+        "skilið og fjallað um fjölbreytta texta, greint þá og borið saman á margvíslegan hátt og lagt rökstutt og gagnrýnið mat á inntak þeirra og eiginleika"
+      ],
+      [
+        "Lestrarmenning",
+        "valið og lesið sér til gagns og ánægju fjölbreytta texta, unnið með efni þeirra á fjölbreyttan hátt og miðlað til annarra"
+      ]
+    ]
+  },
+  {
+    "heiti": "Bókmenntir",
+    "vidmid": [
+      [
+        "Lestur og túlkun bókmennta",
+        "lesið, túlkað, metið og fjallað um fjölbreyttar íslenskar og erlendar bókmenntir"
+      ],
+      [
+        "Bókmenntagreining",
+        "beitt algengum hugtökum í bókmenntafræði við greiningu og umfjöllun um fjölbreyttar bókmenntir frá ýmsum tímum"
+      ],
+      [
+        "Bókmenntaarfurinn",
+        "lesið og skilið texta frá fyrri tímum, áttað sig á því að þeir mótist af sögulegu samhengi og borið saman við eigin samtíð"
+      ],
+      [
+        "Ljóð",
+        "notað algeng bókmenntahugtök í umfjöllun um bundið mál og óbundið og lesið og túlkað fjölbreytt ljóð frá ýmsum tímum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Ritun",
+    "vidmid": [
+      [
+        "Skrift og frágangur",
+        "haft vald á ólíkum leiðum til að miðla rituðu máli og getur valið þá leið sem hentar tilgangi og lesendum"
+      ],
+      [
+        "Uppbygging texta",
+        "skrifað texta þar sem efnisatriðum er skipað í röklegt samhengi, góður þráður er á milli efnisgreina og kaflaskipting er skýr"
+      ],
+      [
+        "Textategundir og málnotkun",
+        "beitt ríkulegu tungutaki, fjölbreyttum orðaforða og málsniði í texta eftir því hver tilgangur skrifanna er, fyrir hvaða viðtakendur er skrifað og hvaða birtingarform er valið"
+      ],
+      [
+        "Tjáning í texta",
+        "samið fjölbreyttan texta til að tjá hugmyndir, skoðanir, reynslu og sköpunarkraft, metið og endurbætt með hliðsjón af gagnrýni og hjálpargögnum"
+      ],
+      [
+        "Stafsetning og greinarmerkjasetning",
+        "beitt helstu atriðum stafsetningar og greinarmerkjasetningar og notað til þess reglur um réttritun og önnur hjálpartæki"
+      ]
+    ]
+  },
+  {
+    "heiti": "Mál og málnotkun",
+    "vidmid": [
+      [
+        "Einkenni málsins",
+        "beitt málfræðiþekkingu sinni í umræðu um tungumálið, þróun og einkenni þess og nýtt hana í eigin málnotkun"
+      ],
+      [
+        "Fjölbreytt málnotkun",
+        "áttað sig á fjölbreyttum tilbrigðum í orðaforða og málnotkun og beitt mismunandi málsniði eftir efni og tilefni í ræðu og riti"
+      ],
+      [
+        "Sköpunarkraftur",
+        "áttað sig á og beitt sköpunarmætti tungumálsins og nýtt það m.a. við ritun, tal, nýyrðasmíð, í orðaleikjum og skáldskap"
+      ],
+      [
+        "Orðflokkar",
+        "áttað sig á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér grein fyrir hlutverki þeirra í eigin texta og annarra"
+      ],
+      [
+        "Orðtök og málshættir",
+        "beitt fleygum orðum, algengum orðtökum, málsháttum og föstum orðasamböndum í máli sínu"
+      ],
+      [
+        "Gögn og hjálpartæki",
+        "nýtt fjölbreytt hjálpartæki til að afla sér upplýsinga um tungumálið og styðja við notkun þess"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

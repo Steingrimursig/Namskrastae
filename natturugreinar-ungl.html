@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hæfniviðmið í náttúrugreinum – unglingastig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>.dalkur.b9 label{color:#6f7a3c} .dalkur.b10 label{color:#9a6a3a}</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow"><a href="index.html">&larr; Forsíða</a> &nbsp;·&nbsp; Aðalnámskrá grunnskóla · 2024 · Unglingastig</p>
+    <h1>Hæfniviðmið í náttúrugreinum</h1>
+    <p class="lede">Unglingastig — viðmið <em>við lok 10. bekkjar</em> (8.–10. bekkur). Smelltu á hæfniviðmið til að merkja það grænt; þá opnast dálkar fyrir 8., 9. og 10. bekk. Allt vistast í sameiginlegum gagnagrunni og samstillist í rauntíma hjá öllum.</p>
+    <div class="vidvorun" id="vidvorun" style="display:none">
+      <strong>Ekki tengt gagnagrunni.</strong> Skráningar vistast ekki og deilast ekki fyrr en þú hefur límt Supabase-aðganginn í <code>config.js</code>.
+    </div>
+  </div>
+</header>
+
+<div class="framvinda">
+  <div class="wrap">
+    <div class="bar"><i id="barfill"></i></div>
+    <b id="prosenta">0%</b>
+    <small id="taln">0 af 0 skráð</small>
+    <span class="stada" id="stada">…</span>
+  </div>
+</div>
+
+<main class="wrap" id="efni"></main>
+
+<footer class="wrap">
+  <p>Allar merkingar og athugasemdir vistast sjálfkrafa í sameiginlegum gagnagrunni og uppfærast hjá öllum sem hafa síðuna opna.</p>
+  <p class="heimild">Texti hæfniviðmiða er úr 22. kafla aðalnámskrár grunnskóla (2024), <a href="https://www.adalnamskra.is/grunnskoli/kafli-22-natturugreinar-2024" target="_blank" rel="noopener">adalnamskra.is</a>. </p>
+</footer>
+
+<script>
+window.SUBJECT = "natturugreinar-ungl";
+window.BEKKIR = [8, 9, 10];
+window.FLOKKAR = [
+  {
+    "heiti": "Vinnulag náttúruvísinda",
+    "vidmid": [
+      [
+        "Hugtök",
+        "beitt hugtökum og heitum í náttúruvísindum við fjölbreyttar aðstæður"
+      ],
+      [
+        "Læsi á gögn og náttúruvísindatexta",
+        "lesið þyngri náttúruvísindatexta sér til gagns og ánægju og endursagt og rætt helstu atriði, lesið út úr myndritum og myndefni um náttúrufræði, umorðað, túlkað og sett í margvíslegt samhengi"
+      ],
+      [
+        "Athuganir",
+        "framkvæmt, skráð og safnað upplýsingum út frá athugunum og mælingum úti og inni, samkvæmt fyrirmælum og á eigin vegum"
+      ],
+      [
+        "Miðlun",
+        "kynnt niðurstöður rannsókna, tekið þátt í gagnrýnum umræðum og metið gildi þess að vísindalegum upplýsingum sé miðlað á skýran hátt"
+      ],
+      [
+        "Vísindaleg vinnubrögð",
+        "sett fram vísindalega tilgátu og beitt margvíslegum vísindalegum vinnubrögðum til að kanna hana í þekkingarleit og úrvinnslu verkefna"
+      ],
+      [
+        "Eðli vísindalegrar þekkingar",
+        "skýrt muninn á staðreynd og skoðun, tilgátu og kenningu í tengslum við náttúruvísindi og sagt frá dæmum um vísindalega þekkingarsköpun"
+      ],
+      [
+        "Tengsl vísinda, tækni og menningar",
+        "tekið þátt í umræðu um hvernig náttúruvísindi bæði móta og mótast af tækni, menningu og heimsmynd mannsins"
+      ]
+    ]
+  },
+  {
+    "heiti": "Umhverfið",
+    "vidmid": [
+      [
+        "Hringrásir efna og orku",
+        "lýst hringrás efna og orku, náttúrulegum ferlum og flæði orku í náttúrunni"
+      ],
+      [
+        "Vistkerfi",
+        "útskýrt þarfir lífvera og rætt á gagnrýninn hátt um þróun ólíkra vistkerfa"
+      ],
+      [
+        "Líffræðileg fjölbreytni",
+        "útskýrt gildi líffræðilegrar fjölbreytni og tengsl við velferð manna, dýravernd, sjálfbæra þróun og vistkerfin"
+      ],
+      [
+        "Náttúruvernd",
+        "fjallað um og tekið gagnrýna afstöðu til siðferðilegra þátta sem tengjast náttúruvernd"
+      ],
+      [
+        "Veðurfar",
+        "útskýrt loftslag, vinda og hafstrauma jarðar"
+      ],
+      [
+        "Loftslagsbreytingar",
+        "útskýrt loftslagsbreytingar, ástæður, afleiðingar og mótvægisaðgerðir"
+      ],
+      [
+        "Náttúruauðlindir og sjálfbær nýting",
+        "gert grein fyrir verndun og nýtingu náttúruauðlinda í tengslum við sjálfbæra þróun, sjálfbæra nýtingu og rýnt í eigin neysluvenjur"
+      ],
+      [
+        "Einstaklingurinn og umhverfið",
+        "rætt á gagnrýninn hátt tengsl einstaklinga, nærumhverfis og umhverfismála á heimsvísu"
+      ],
+      [
+        "Geta til aðgerða",
+        "skipulagt og tekið þátt í aðgerðum er varða náttúruvernd og umhverfismál í nærumhverfi og í alþjóðlegu samhengi"
+      ]
+    ]
+  },
+  {
+    "heiti": "Lífið",
+    "vidmid": [
+      [
+        "Upplifun af náttúrunni",
+        "gert grein fyrir tengslum sínum við aðrar lífverur og eigin athugunum á hegðun þeirra"
+      ],
+      [
+        "Flokkun og lífsskilyrði lífvera",
+        "útskýrt einkenni og lífsskilyrði lífvera og flokkun þeirra eftir skyldleika"
+      ],
+      [
+        "Örverur",
+        "þekkt gagn og skaðsemi örvera"
+      ],
+      [
+        "Frumur",
+        "útskýrt gerð frumna, líffæri þeirra og starfsemi"
+      ],
+      [
+        "Þróun",
+        "fjallað um þróun lífvera og tekið dæmi um hvernig lífverur hafa aðlagast umhverfi sínu"
+      ],
+      [
+        "Erfðir",
+        "útskýrt hvernig einkenni erfast á milli kynslóða"
+      ],
+      [
+        "Bygging og starfsemi plantna",
+        "gert grein fyrir fjölbreytileika plantna, starfsemi mismunandi plöntuhópa og mikilvægi þeirra fyrir kolefnisbindingu"
+      ],
+      [
+        "Bygging og starfsemi sveppa",
+        "gert grein fyrir fjölbreytileika sveppa, starfsemi mismunandi tegunda og hvernig þeir taka þátt í samskiptum milli plantna"
+      ],
+      [
+        "Bygging og starfsemi dýra",
+        "gert grein fyrir fjölbreytileika dýra og mismunandi einkennum"
+      ],
+      [
+        "Líffæri og líffærakerfi",
+        "lýst hlutverki og samspili helstu líffæra og líffærakerfa mannslíkamans"
+      ],
+      [
+        "Kynheilbrigði",
+        "rætt kynheilbrigði, kynvitund, ábyrga hegðun í kynlífi, mikilvægi þess að virða mörk, tilfinningar og tilgang getnaðarvarna"
+      ],
+      [
+        "Heilsa",
+        "útskýrt hvernig einstaklingur getur stuðlað að eigin velferð, líkamlegu og andlegu heilbrigði með ábyrgri neyslu, hegðun og samskiptum"
+      ]
+    ]
+  },
+  {
+    "heiti": "Efnin",
+    "vidmid": [
+      [
+        "Uppbygging efna",
+        "þekkt uppbyggingu frumeinda og sameinda og myndun jóna"
+      ],
+      [
+        "Varðveisla massa",
+        "útskýrt varðveislu massa, tengt við hegðun efna og frumeindakenninguna"
+      ],
+      [
+        "Lotukerfið",
+        "útskýrt uppbyggingu lotukerfisins og tengt við eiginleika efna"
+      ],
+      [
+        "Efnajöfnur",
+        "þekkt heiti algengra frumefna og efnasambanda og unnið með þau í efnajöfnum"
+      ],
+      [
+        "Efnabreytingar og eiginleikar efna",
+        "lýst efnabreytingum og samspili þeirra við hitastig og orku, m.a. með efnajöfnum"
+      ],
+      [
+        "Leysni",
+        "unnið með leysni mismunandi efna í vökvum og lofttegundum"
+      ],
+      [
+        "Sýrustig",
+        "útskýrt og unnið með pH kvarðann"
+      ]
+    ]
+  },
+  {
+    "heiti": "Orkan",
+    "vidmid": [
+      [
+        "Orka",
+        "gert grein fyrir orku í mismunandi formum og tengt við varðveislu orkunnar"
+      ],
+      [
+        "Nýting orku",
+        "lýst ólíkum leiðum við framleiðslu, dreifingu og nýtingu orku og lýst áhrifum á umhverfi og náttúru"
+      ],
+      [
+        "Varmi",
+        "útskýrt mismunandi varmaflutning og samspil varma og hitastigs"
+      ],
+      [
+        "Rafmagn og segulmagn",
+        "útskýrt stöðurafmagn og tengsl rafmagns og segulmagns"
+      ],
+      [
+        "Rafmagn og rafrásir",
+        "útskýrt einfaldar rafrásir"
+      ],
+      [
+        "Bylgjur",
+        "útskýrt bylgjur rafsegulrófsins og hljóðs og lýst eiginleikum þeirra"
+      ],
+      [
+        "Gagn og skaðsemi bylgna",
+        "gert grein fyrir gagnsemi og hættum við bylgjur"
+      ],
+      [
+        "Kraftar og hreyfing",
+        "útskýrt helstu kraftalögmál sem verka í daglegu lífi manna"
+      ],
+      [
+        "Massi",
+        "mælt og reiknað eðlismassa efna og útskýrt muninn á massa og þyngd"
+      ]
+    ]
+  },
+  {
+    "heiti": "Alheimurinn",
+    "vidmid": [
+      [
+        "Jörðin",
+        "gert grein fyrir stöðu og hreyfingu jarðar og áhrifum hennar á líf á jörðu"
+      ],
+      [
+        "Mótun lands",
+        "útskýrt hvernig land hefur myndast og mótast á jarðsögulegum tíma"
+      ],
+      [
+        "Hamfarir",
+        "útskýrt hvar og af hverju helstu náttúruhamfarir verða sem búast má við á Íslandi og hvernig viðbrögð við þeim eru skipulögð"
+      ],
+      [
+        "Tunglið",
+        "gert grein fyrir áhrifum tunglsins á jörðina"
+      ],
+      [
+        "Sólkerfið",
+        "þekkt eiginleika sólkerfisins og gert grein fyrir myndun, stöðu og hreyfingu sólkerfa"
+      ],
+      [
+        "Alheimurinn",
+        "gert grein fyrir myndun og þróun stjarna"
+      ]
+    ]
+  }
+];
+</script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
