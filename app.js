@@ -1,6 +1,50 @@
 (function () {
   "use strict";
-  var FLOKKAR = window.FLOKKAR, SUBJECT = window.SUBJECT;
+
+  // ---- Lykilorðshindrun (sameiginlegt lykilorð) ----
+  (function gate() {
+    var HASH = window.SITE_PASSWORD_SHA256;
+    if (!HASH || /PASTE|YOUR/.test(HASH)) return;            // ekki stillt -> engin hindrun
+    if (sessionStorage.getItem("haefni_unlocked") === HASH) return; // þegar opnað í þessari lotu
+    var ov = document.createElement("div");
+    ov.id = "haefni-gate";
+    ov.style.cssText = "position:fixed;inset:0;z-index:99999;background:#EBEEEC;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif";
+    ov.innerHTML =
+      '<div style="background:#fff;border:1px solid #D6DDD9;border-radius:14px;padding:28px 26px;max-width:340px;width:calc(100% - 40px);box-shadow:0 6px 22px rgba(30,42,44,.12)">' +
+      '<h1 style="font-family:Newsreader,serif;font-weight:500;font-size:22px;margin:0 0 6px;color:#1E2A2C">Aðgangur</h1>' +
+      '<p style="color:#5E6E6E;font-size:14px;margin:0 0 16px">Sláðu inn lykilorð til að opna skólanámskrána.</p>' +
+      '<input id="hg-pw" type="password" autocomplete="current-password" placeholder="Lykilorð" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #9FCBB0;border-radius:8px;font:inherit;font-size:15px;margin-bottom:10px">' +
+      '<button id="hg-go" style="width:100%;padding:10px;border:0;border-radius:8px;background:#2F7A52;color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer">Opna</button>' +
+      '<p id="hg-err" style="color:#b4524a;font-size:13px;margin:10px 0 0;min-height:16px"></p></div>';
+    document.body.appendChild(ov);
+    var inp = ov.querySelector("#hg-pw"), btn = ov.querySelector("#hg-go"), err = ov.querySelector("#hg-err");
+    inp.focus();
+    function sha256(s) {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)).then(function (b) {
+        return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, "0"); }).join("");
+      });
+    }
+    function tryUnlock() {
+      sha256(inp.value).then(function (h) {
+        if (h === HASH) { try { sessionStorage.setItem("haefni_unlocked", HASH); } catch (e) {} ov.remove(); }
+        else { err.textContent = "Rangt lykilorð."; inp.select(); }
+      });
+    }
+    btn.addEventListener("click", tryUnlock);
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") tryUnlock(); });
+  })();
+
+  var FLOKKAR = window.FLOKKAR;
+  var BASE_SUBJECT = window.SUBJECT;
+  var p_ar = new URLSearchParams(location.search).get("ar") || "";
+  var ARGANGUR = /^\d{4}$/.test(p_ar) ? p_ar : "";           // aðeins gilt fæðingarár
+  var SUBJECT = ARGANGUR ? (ARGANGUR + "-" + BASE_SUBJECT) : BASE_SUBJECT;
+  if (ARGANGUR) {
+    var eb = document.querySelector(".eyebrow");
+    if (eb) eb.insertAdjacentHTML("beforeend", ' &nbsp;·&nbsp; <strong style="color:var(--sea)">Árgangur ' + ARGANGUR + '</strong>');
+    var bakhlekkur = document.querySelector('.eyebrow a[href="index.html"]');
+    if (bakhlekkur) bakhlekkur.setAttribute("href", "index.html");
+  }
   var BEKKIR = window.BEKKIR || [5, 6, 7];   // árgangar dálkanna
   var rom = ["I", "II", "III", "IV", "V", "VI"];
   var efni = document.getElementById("efni");

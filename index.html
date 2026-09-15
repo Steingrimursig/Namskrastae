@@ -10,26 +10,52 @@
 <style>
   :root{
     --paper:#EBEEEC; --surface:#FFFFFF; --ink:#1E2A2C; --muted:#5E6E6E;
-    --line:#D6DDD9; --sea:#2F7A52; --blue:#3A6B8C;
+    --line:#D6DDD9; --sea:#2F7A52; --sea-fill:#E1EFE6; --blue:#3A6B8C;
     --shadow:0 1px 2px rgba(30,42,44,.05),0 6px 22px rgba(30,42,44,.06);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);
     font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-  header{padding:52px 0 20px}
+  header{padding:52px 0 8px}
   .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600;margin:0 0 12px}
   h1{font-family:"Newsreader",serif;font-weight:500;font-optical-sizing:auto;
     font-size:clamp(31px,6vw,46px);line-height:1.08;margin:0 0 14px;letter-spacing:-.01em;}
   .lede{color:var(--muted);font-size:16px;max-width:54ch;margin:0}
-  .stig{font-family:"Newsreader",serif;font-weight:500;font-size:22px;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+
+  /* Árgangaval */
+  .argangur{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);
+    padding:16px 18px;margin:26px 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+  .argangur label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+  .argangur select{flex:1;min-width:180px;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);
+    border-radius:8px;background:#fff;color:var(--ink)}
+  .argangur select:focus-visible{outline:2px solid var(--blue)}
+  .baeta{font:inherit;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);padding:9px 13px;border-radius:8px;transition:.2s;white-space:nowrap}
+  .baeta:hover{border-color:var(--blue);color:var(--blue)}
+  .valid-argangur{width:100%;font-size:13.5px;color:var(--sea);font-weight:500;margin:2px 0 0;min-height:0}
+
+  /* Stig-stika */
+  .stika{display:flex;gap:6px;background:#E1E6E3;border:1px solid var(--line);border-radius:12px;padding:5px;margin:16px 0 10px}
+  .stika button{flex:1;border:0;background:none;font:inherit;font-weight:600;font-size:14.5px;color:var(--muted);
+    padding:11px 8px;border-radius:8px;cursor:pointer;transition:.18s;white-space:nowrap}
+  .stika button:hover{color:var(--ink)}
+  .stika button.virk{background:var(--surface);color:var(--sea);box-shadow:var(--shadow)}
+  .stika button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+  .stig-lysing{color:var(--muted);font-size:14px;margin:14px 2px 18px}
   .grein{display:block;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sea);
     border-radius:12px;padding:20px 22px;margin-bottom:12px;text-decoration:none;color:var(--ink);
     box-shadow:var(--shadow);transition:transform .15s,border-color .2s}
   .grein:hover{transform:translateY(-2px);border-left-color:var(--blue)}
   .grein h2{font-family:"Newsreader",serif;font-weight:500;margin:0 0 4px;font-size:22px}
   .grein span{color:var(--muted);font-size:14px}
+  .bid{background:#F0F2F0;border:1px dashed #C4CEC8;border-radius:12px;padding:26px 22px;text-align:center;color:var(--muted)}
+  .bid h2{font-family:"Newsreader",serif;font-weight:500;font-size:20px;margin:0 0 6px;color:var(--ink)}
+  .bid span{font-size:14px}
   main{padding-bottom:70px}
+  .panel{display:none}
+  .panel.virk{display:block}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -38,23 +64,144 @@
   <div class="wrap">
     <p class="eyebrow">Skólanámskrá · hæfniviðmið aðalnámskrár</p>
     <h1>Hæfniviðmið aðalnámskrár</h1>
-    <p class="lede">Sameiginlegt vinnusvæði kennara. Veldu stig og námsgrein, merktu viðmið og skráðu hvernig hver árgangur fór í þau. Allt samstillist í rauntíma hjá öllum.</p>
+    <p class="lede">Veldu árgang, svo aldursstig og námsgrein. Merktu viðmið og skráðu hvernig gengur. Hver árgangur hefur sitt eigið svæði svo hægt er að fylgja honum alla skólagönguna.</p>
   </div>
 </header>
 <main class="wrap">
-  <h2 class="stig">Miðstig · 5.–7. bekkur</h2>
-  <a class="grein" href="islenska.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum · við lok 7. bekkjar</span></a>
-  <a class="grein" href="erlend-tungumal.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 1. stig (enska)</span></a>
-  <a class="grein" href="staerdfraedi.html"><h2>Stærðfræði</h2><span>35 hæfniviðmið í fimm flokkum · við lok 7. bekkjar</span></a>
-  <a class="grein" href="natturugreinar.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum · við lok 7. bekkjar</span></a>
-  <a class="grein" href="samfelagsfraedi.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum · við lok 7. bekkjar</span></a>
+  <div class="argangur">
+    <label for="arval">Árgangur</label>
+    <select id="arval"></select>
+    <button class="baeta" id="baeta">+ Bæta við árgangi</button>
+    <p class="valid-argangur" id="arinfo"></p>
+  </div>
 
-  <h2 class="stig">Unglingastig · 8.–10. bekkur</h2>
-  <a class="grein" href="islenska-ungl.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum · við lok 10. bekkjar</span></a>
-  <a class="grein" href="erlend-tungumal-ungl.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 3. stig (enska)</span></a>
-  <a class="grein" href="staerdfraedi-ungl.html"><h2>Stærðfræði</h2><span>36 hæfniviðmið í fimm flokkum · við lok 10. bekkjar</span></a>
-  <a class="grein" href="natturugreinar-ungl.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum · við lok 10. bekkjar</span></a>
-  <a class="grein" href="samfelagsfraedi-ungl.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum · við lok 10. bekkjar</span></a>
+  <div class="stika" role="tablist">
+    <button data-stig="14" role="tab">1.–4. bekkur</button>
+    <button data-stig="57" role="tab">5.–7. bekkur</button>
+    <button data-stig="810" role="tab">8.–10. bekkur</button>
+  </div>
+
+  <section class="panel" data-stig="14">
+    <p class="stig-lysing">Yngsta stig — viðmið við lok 4. bekkjar.</p>
+    <div class="bid"><h2>Í vinnslu</h2><span>Yngsta stig (1.–4. bekkur) verður bætt við síðar.</span></div>
+  </section>
+
+  <section class="panel" data-stig="57">
+    <p class="stig-lysing">Miðstig — viðmið við lok 7. bekkjar, með dálkum fyrir 5., 6. og 7. bekk.</p>
+    <a class="grein" data-base="islenska.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum</span></a>
+    <a class="grein" data-base="erlend-tungumal.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 1. stig (enska)</span></a>
+    <a class="grein" data-base="staerdfraedi.html"><h2>Stærðfræði</h2><span>35 hæfniviðmið í fimm flokkum</span></a>
+    <a class="grein" data-base="natturugreinar.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum</span></a>
+    <a class="grein" data-base="samfelagsfraedi.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum</span></a>
+  </section>
+
+  <section class="panel" data-stig="810">
+    <p class="stig-lysing">Unglingastig — viðmið við lok 10. bekkjar, með dálkum fyrir 8., 9. og 10. bekk.</p>
+    <a class="grein" data-base="islenska-ungl.html"><h2>Íslenska</h2><span>24 hæfniviðmið í fimm flokkum</span></a>
+    <a class="grein" data-base="erlend-tungumal-ungl.html"><h2>Erlend tungumál</h2><span>23 hæfniviðmið í sex flokkum · 3. stig (enska)</span></a>
+    <a class="grein" data-base="staerdfraedi-ungl.html"><h2>Stærðfræði</h2><span>36 hæfniviðmið í fimm flokkum</span></a>
+    <a class="grein" data-base="natturugreinar-ungl.html"><h2>Náttúrugreinar</h2><span>50 hæfniviðmið í sex flokkum</span></a>
+    <a class="grein" data-base="samfelagsfraedi-ungl.html"><h2>Samfélagsfræði</h2><span>44 hæfniviðmið í sex flokkum</span></a>
+  </section>
 </main>
+
+<script>
+(function(){
+  var sel=document.getElementById("arval"), baeta=document.getElementById("baeta"), arinfo=document.getElementById("arinfo");
+  var takkar=document.querySelectorAll(".stika button"), panels=document.querySelectorAll(".panel"), greinar=document.querySelectorAll(".grein[data-base]");
+
+  var nu=new Date();
+  var haust = (nu.getMonth()>=7) ? nu.getFullYear() : nu.getFullYear()-1;  // skólaár hefst í ágúst
+  function bekkur(ar){ return haust - ar - 5; }                             // bekkur árgangs í ár
+  function stigFyrir(b){ return b<=4 ? "14" : (b<=7 ? "57" : "810"); }
+
+  function extra(){ try{ return JSON.parse(localStorage.getItem("haefni_extra_arg"))||[]; }catch(e){ return []; } }
+  function vistaExtra(a){ try{ localStorage.setItem("haefni_extra_arg", JSON.stringify(a)); }catch(e){} }
+
+  function byggjaValmynd(valid){
+    var ar=[];
+    for(var b=1;b<=10;b++){ ar.push(haust-5-b); }        // árgangar í 1.-10. bekk í ár
+    extra().forEach(function(y){ if(ar.indexOf(y)<0) ar.push(y); });
+    ar.sort(function(a,b){ return b-a; });               // yngsti árgangur efst
+    sel.innerHTML='<option value="">Án árgangs (almennt)</option>';
+    ar.forEach(function(y){
+      var b=bekkur(y), merki=(b>=1&&b<=10)?(y+" — "+b+". bekkur í ár"):(y+" — utan 1.–10. bekkjar");
+      var o=document.createElement("option"); o.value=String(y); o.textContent="Árgangur "+merki;
+      sel.appendChild(o);
+    });
+    sel.value = valid || "";
+  }
+
+  function uppfaeraHlekki(){
+    var ar=sel.value;
+    greinar.forEach(function(g){ g.setAttribute("href", g.dataset.base + (ar ? "?ar="+ar : "")); });
+  }
+  function synaStig(stig){
+    takkar.forEach(function(t){ t.classList.toggle("virk", t.dataset.stig===stig); });
+    panels.forEach(function(p){ p.classList.toggle("virk", p.dataset.stig===stig); });
+    try{ localStorage.setItem("haefni_stig", stig); }catch(e){}
+  }
+  function uppfaeraInfo(){
+    var ar=sel.value;
+    if(!ar){ arinfo.textContent=""; return; }
+    var b=bekkur(Number(ar));
+    arinfo.textContent = (b>=1&&b<=10) ? ("Árgangur "+ar+" er í "+b+". bekk skólaárið "+haust+"–"+(haust+1)+".")
+                                       : ("Árgangur "+ar+" er utan 1.–10. bekkjar í ár.");
+  }
+
+  takkar.forEach(function(t){ t.addEventListener("click", function(){ synaStig(t.dataset.stig); }); });
+
+  sel.addEventListener("change", function(){
+    var ar=sel.value;
+    try{ localStorage.setItem("haefni_argangur", ar); }catch(e){}
+    uppfaeraHlekki(); uppfaeraInfo();
+    if(ar){ var b=bekkur(Number(ar)); if(b>=1&&b<=10) synaStig(stigFyrir(b)); }  // stökkva á rétt stig
+  });
+
+  baeta.addEventListener("click", function(){
+    var svar=prompt("Sláðu inn fæðingarár árgangs (t.d. 2014):");
+    if(!svar) return;
+    svar=svar.trim();
+    if(!/^\d{4}$/.test(svar)){ alert("Sláðu inn fjögurra stafa ártal."); return; }
+    var a=extra(); if(a.indexOf(Number(svar))<0){ a.push(Number(svar)); vistaExtra(a); }
+    byggjaValmynd(svar);
+    try{ localStorage.setItem("haefni_argangur", svar); }catch(e){}
+    uppfaeraHlekki(); uppfaeraInfo();
+    var b=bekkur(Number(svar)); if(b>=1&&b<=10) synaStig(stigFyrir(b));
+  });
+
+  // Frumstilling
+  var vistadAr; try{ vistadAr=localStorage.getItem("haefni_argangur"); }catch(e){}
+  byggjaValmynd(vistadAr||"");
+  uppfaeraHlekki(); uppfaeraInfo();
+  var vistadStig; try{ vistadStig=localStorage.getItem("haefni_stig"); }catch(e){}
+  if(sel.value){ var b=bekkur(Number(sel.value)); synaStig((b>=1&&b<=10)?stigFyrir(b):(vistadStig||"57")); }
+  else synaStig(vistadStig||"57");
+})();
+</script>
+
+<script src="config.js"></script>
+<script>
+(function gate(){
+  var HASH = window.SITE_PASSWORD_SHA256;
+  if(!HASH || /PASTE|YOUR/.test(HASH)) return;
+  if(sessionStorage.getItem("haefni_unlocked") === HASH) return;
+  var ov=document.createElement("div");
+  ov.style.cssText="position:fixed;inset:0;z-index:99999;background:#EBEEEC;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif";
+  ov.innerHTML='<div style="background:#fff;border:1px solid #D6DDD9;border-radius:14px;padding:28px 26px;max-width:340px;width:calc(100% - 40px);box-shadow:0 6px 22px rgba(30,42,44,.12)">'+
+    '<h1 style="font-family:Newsreader,serif;font-weight:500;font-size:22px;margin:0 0 6px;color:#1E2A2C">Aðgangur</h1>'+
+    '<p style="color:#5E6E6E;font-size:14px;margin:0 0 16px">Sláðu inn lykilorð til að opna skólanámskrána.</p>'+
+    '<input id="hg-pw" type="password" autocomplete="current-password" placeholder="Lykilorð" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #9FCBB0;border-radius:8px;font:inherit;font-size:15px;margin-bottom:10px">'+
+    '<button id="hg-go" style="width:100%;padding:10px;border:0;border-radius:8px;background:#2F7A52;color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer">Opna</button>'+
+    '<p id="hg-err" style="color:#b4524a;font-size:13px;margin:10px 0 0;min-height:16px"></p></div>';
+  document.body.appendChild(ov);
+  var inp=ov.querySelector("#hg-pw"),btn=ov.querySelector("#hg-go"),err=ov.querySelector("#hg-err");
+  inp.focus();
+  function sha256(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");});}
+  function go(){sha256(inp.value).then(function(h){if(h===HASH){try{sessionStorage.setItem("haefni_unlocked",HASH);}catch(e){}ov.remove();}else{err.textContent="Rangt lykilorð.";inp.select();}});}
+  btn.addEventListener("click",go);
+  inp.addEventListener("keydown",function(e){if(e.key==="Enter")go();});
+})();
+</script>
 </body>
 </html>
